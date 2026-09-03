@@ -82,7 +82,7 @@ const copy = {
     biliLabel: "哔哩哔哩",
     xhsLabel: "小红书",
     footerNote: "个人主页 · GitHub Pages",
-    pageTitle: "梁宇凡 · Yufan Liang",
+    pageTitle: "梁宇凡 Yufan Liang · IF.Link 发起人 | 东南大学生物医学工程",
   },
   en: {
     skip: "Skip to content",
@@ -167,7 +167,7 @@ const copy = {
     biliLabel: "Bilibili",
     xhsLabel: "Xiaohongshu",
     footerNote: "Personal site · GitHub Pages",
-    pageTitle: "Yufan Liang · 梁宇凡",
+    pageTitle: "Yufan Liang 梁宇凡 · Founder of IF.Link | SEU Biomedical Engineering",
   },
 };
 
