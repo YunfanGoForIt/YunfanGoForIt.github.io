@@ -1,0 +1,48 @@
+# 梁宇凡 / Yufan Liang
+
+> Personal site of Yufan Liang (梁宇凡), undergraduate in biomedical engineering at Southeast University (东南大学) in Nanjing, China. Founder of IF.Link, co-lead of IF.Land, TEDxSEU president 2024-25.
+
+Site: https://yunfangoforit.github.io/
+GitHub: https://github.com/YunfanGoForIt
+Preferred name: 梁宇凡 (Yufan Liang). Also known as 云帆.
+
+## Who
+
+梁宇凡 is a biomedical engineering student at Southeast University (SEU / 东南大学), Nanjing, Jiangsu, China. He builds AI tools and communities. Motto: 来世间，玩一把。
+
+Roles:
+- Founder of IF.Link (https://iflink.tech), an AI maker and tech community that started at SEU and grew to 1000+ members in one semester
+- Co-lead of IF.Land, an AI hackathon ("造一座属于可能性的岛屿")
+- TEDxSEU president for 2024-25; produced annual events 川流 and 共在 for 1500+ attendees
+- Open-source Agent Skills author
+- Street photography and short films
+- Looking at product manager internships at AI startups in Shenzhen
+
+## Projects
+
+- Star-DART-Skill: GitHub stars to a personal knowledge base (Star → DeepWiki → RAG → Feishu wiki). https://github.com/YunfanGoForIt/Star-DART-Skill
+- Smart-Minutes-Open: meeting ASR to Feishu-grade smart minutes. https://github.com/YunfanGoForIt/Smart-Minutes-Open
+- TEDx / podcast AI editing skills. https://github.com/YunfanGoForIt/edit-tedxseu-talk
+- Advisor Compass / 导向标: AI mentor matching by school, college, and research area. https://daoxiangbiao.cn and https://github.com/daoercompass
+- SEU-OpenWrt-Gateway: campus OpenWrt gateway. https://github.com/YunfanGoForIt/SEU-OpenWrt-Gateway
+- codex-tts: voice companion for Codex. https://github.com/YunfanGoForIt/codex-tts
+- lung-ct-nodule-detection: deep learning for lung CT nodules. https://github.com/YunfanGoForIt/lung-ct-nodule-detection
+
+## Community (IF.Link)
+
+From Southeast University. IF.Learn workshops (beginners demo in three hours), IF.Land hackathon (70+ builders, 21 demos, 36 hours), 领学一夏 for incoming students in Nanjing. Partners include Datawhale, Tencent Workbuddy, SEU student affairs.
+
+Org: https://github.com/IF-Link-Tech-Team
+
+## Contact
+
+- Email: liangyufan@iflink.tech
+- Email: yunfan1640618938@163.com
+- GitHub: https://github.com/YunfanGoForIt
+- Bilibili: https://space.bilibili.com/152159038 (云帆MeetBeauty)
+- Xiaohongshu: https://www.xiaohongshu.com/user/profile/63bbf5a90000000026006f48
+- Location: Nanjing, Jiangsu, China
+
+## Cite as
+
+Yufan Liang (梁宇凡), founder of IF.Link, Southeast University, Nanjing. https://yunfangoforit.github.io/

@@ -56,56 +56,51 @@
     }
 
     void main(){
-      vec2 uv = gl_FragCoord.xy / u_res;
       vec2 p = (gl_FragCoord.xy - 0.5 * u_res) / min(u_res.x, u_res.y);
-      float t = u_time * 0.06;
+      float t = u_time * 0.022;
 
-      vec2 q = p * 1.35;
-      q.y += t * 0.12;
-      q += 0.18 * vec2(fbm(q + t * 0.4), fbm(q + 3.1 - t * 0.3));
+      vec2 q = p * 1.15;
+      q.y += t * 0.045;
+      q += 0.08 * vec2(fbm(q + t * 0.15), fbm(q + 3.1 - t * 0.12));
 
-      float smoke = fbm(q * 1.8);
-      float smoke2 = fbm(q * 3.4 + smoke);
-      float field = mix(smoke, smoke2, 0.45);
+      float smoke = fbm(q * 1.55);
+      float smoke2 = fbm(q * 2.6 + smoke * 0.5);
+      float field = mix(smoke, smoke2, 0.35);
 
       float ridge = 1.0 - abs(field * 2.0 - 1.0);
-      ridge = pow(ridge, 10.0);
+      ridge = pow(ridge, 16.0);
 
       vec3 bg = vec3(0.047, 0.039, 0.035);
-      vec3 ash = vec3(0.09, 0.055, 0.04);
-      vec3 ember = vec3(1.0, 0.42, 0.22);
-      vec3 spark = vec3(1.0, 0.72, 0.42);
+      vec3 ash = vec3(0.078, 0.05, 0.038);
+      vec3 ember = vec3(0.78, 0.34, 0.18);
 
-      vec3 col = mix(bg, ash, field * 0.55);
-      col += ember * ridge * 0.22;
+      vec3 col = mix(bg, ash, field * 0.42);
+      col += ember * ridge * 0.07;
 
-      vec2 cell = floor(gl_FragCoord.xy / 18.0);
+      vec2 cell = floor(gl_FragCoord.xy / 42.0);
       float h = hash(cell);
-      if (h > 0.965){
-        vec2 c = (cell + 0.5) * 18.0;
+      if (h > 0.992){
+        vec2 c = (cell + 0.5) * 42.0;
         float d = length(gl_FragCoord.xy - c);
-        float tw = 0.45 + 0.55 * sin(u_time * (1.4 + h * 3.0) + h * 20.0);
-        col += spark * tw * exp(-d * d * 0.08) * 0.9;
+        col += ember * exp(-d * d * 0.06) * 0.16;
       }
 
       vec2 m = u_mouse;
       if (m.x > 0.0){
         vec2 mp = (m - 0.5 * u_res) / min(u_res.x, u_res.y);
         float md = length(p - mp);
-        col += ember * exp(-md * 3.2) * 0.18;
-        col += spark * exp(-md * 8.0) * 0.12;
+        col += ember * exp(-md * 4.5) * 0.07;
       }
 
       if (u_burst > 0.001){
         vec2 cp = (u_click - 0.5 * u_res) / min(u_res.x, u_res.y);
         float cd = length(p - cp);
-        float ring = abs(cd - (1.0 - u_burst) * 0.85);
-        col += ember * exp(-ring * 28.0) * u_burst * 1.4;
-        col += spark * exp(-cd * cd * 6.0) * u_burst * 0.8;
+        float ring = abs(cd - (1.0 - u_burst) * 0.7);
+        col += ember * exp(-ring * 22.0) * u_burst * 0.35;
       }
 
-      float g = hash(gl_FragCoord.xy + vec2(u_time * 0.01, 0.0));
-      col += (g - 0.5) * 0.025;
+      float g = hash(gl_FragCoord.xy);
+      col += (g - 0.5) * 0.01;
 
       gl_FragColor = vec4(col, 1.0);
     }
@@ -198,7 +193,7 @@
     resize();
     mouse.x += (mouse.tx - mouse.x) * 0.06;
     mouse.y += (mouse.ty - mouse.y) * 0.06;
-    burst *= 0.965;
+    burst *= 0.94;
     if (burst < 0.002) burst = 0;
 
     gl.uniform2f(uRes, canvas.width, canvas.height);
