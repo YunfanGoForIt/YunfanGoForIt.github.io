@@ -19,7 +19,7 @@
   <meta name="twitter:description" content="来世间，玩一把。">
   <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
   <link rel="stylesheet" href="https://fonts.bunny.net/css?family=noto-sans-sc:400,500,700|outfit:400,500,600,700&display=swap">
-  <link rel="stylesheet" href="./styles.css?v=5">
+  <link rel="stylesheet" href="./styles.css?v=6">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,6 +49,7 @@
   </script>
 </head>
 <body>
+  <canvas id="bg-shader" class="bg-shader" aria-hidden="true"></canvas>
   <a class="skip" href="#main" data-i18n="skip">跳到正文</a>
 
   <header class="nav">
@@ -80,20 +81,24 @@
   <main id="main">
     <section class="wrap hero">
       <div class="hero-copy reveal">
-        <p class="kicker" data-i18n="kicker">东南大学 · 生物医学工程</p>
-        <h1 class="display">
+        <h1 class="display" id="hero-name">
           梁宇凡
           <em>Yufan Liang</em>
         </h1>
-        <p class="lede" data-i18n="lede">来世间，玩一把。</p>
-        <p class="hero-meta" data-i18n="meta">IF.Link 发起人 · IF.Land 联合负责人 · TEDxSEU 24-25 社长</p>
+        <p class="lede" id="hero-lede" data-i18n="lede">来世间，玩一把。</p>
+        <ul class="hero-tags">
+          <li data-i18n="tagSchool">东南大学 · 生物医学工程</li>
+          <li data-i18n="tagIflink">IF.Link 发起人</li>
+          <li data-i18n="tagIfland">IF.Land 联合负责人</li>
+          <li data-i18n="tagTedx">TEDxSEU 24-25 社长</li>
+        </ul>
         <div class="cta-row">
           <a class="btn" href="#work" data-i18n="ctaWork">看作品</a>
           <a class="btn btn-ghost" href="mailto:liangyufan@iflink.tech" data-i18n="ctaMail">来聊</a>
         </div>
       </div>
-      <figure class="hero-media reveal">
-        <img src="./assets/avatar.jpg" width="420" height="420" alt="火山前的剪影：一个人向火光走去">
+      <figure class="hero-media reveal" id="hero-photo">
+        <img src="./assets/avatar.jpg" width="320" height="320" alt="火山前的剪影：一个人向火光走去">
       </figure>
     </section>
 
@@ -137,10 +142,10 @@
         <h2 data-i18n="communityTitle">IF.Link</h2>
         <p class="quote" data-i18n="quote">Link the IFs, connect the dots. 以人为本，守护连接。</p>
         <div class="stats">
-          <div class="stat"><b>1000+</b><span data-i18n="s1">社区成员</span></div>
-          <div class="stat"><b>500+</b><span data-i18n="s2">工作坊报名</span></div>
-          <div class="stat"><b>50+</b><span data-i18n="s3">现场作品</span></div>
-          <div class="stat"><b>21</b><span data-i18n="s4">黑客松 Demo</span></div>
+          <div class="stat"><b data-count="1000" data-suffix="+">1000+</b><span data-i18n="s1">社区成员</span></div>
+          <div class="stat"><b data-count="500" data-suffix="+">500+</b><span data-i18n="s2">工作坊报名</span></div>
+          <div class="stat"><b data-count="50" data-suffix="+">50+</b><span data-i18n="s3">现场作品</span></div>
+          <div class="stat"><b data-count="21" data-suffix="">21</b><span data-i18n="s4">黑客松 Demo</span></div>
         </div>
         <div class="community-notes">
           <p data-i18n="cNote1">IF.Learn 工作坊：零基础同学走进来，三小时后上台演示自己的第一个小游戏或小网页。不少人因此回到社区，成为后续的组织者。已办 4 场，覆盖双校区。</p>
@@ -318,6 +323,8 @@
     <span data-i18n="footerNote">个人主页 · GitHub Pages</span>
   </footer>
 
+  <div class="egg-toast" id="egg-toast" hidden></div>
+  <script src="./shader.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>

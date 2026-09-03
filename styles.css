@@ -32,6 +32,32 @@ body {
   line-height: 1.65;
   letter-spacing: 0.01em;
   text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+.bg-shader {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: block;
+}
+
+html.no-shader .bg-shader {
+  display: none;
+}
+
+html.no-shader body {
+  background:
+    radial-gradient(900px 500px at 78% 8%, rgba(255, 90, 30, 0.14), transparent 55%),
+    var(--bg);
+}
+
+main {
+  position: relative;
+  z-index: 1;
 }
 
 img {
@@ -85,7 +111,7 @@ a:hover {
   z-index: 40;
   height: var(--nav-h);
   border-bottom: 1px solid var(--line);
-  background: rgba(12, 10, 9, 0.84);
+  background: rgba(12, 10, 9, 0.58);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
 }
@@ -200,26 +226,19 @@ a:hover {
 
 .hero {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 3rem;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.2rem;
   align-items: center;
-  min-height: calc(100dvh - var(--nav-h));
-  padding: 3rem 0 3.5rem;
-}
-
-.kicker {
-  margin: 0 0 1.1rem;
-  color: var(--muted);
-  font-size: 0.86rem;
-  letter-spacing: 0.08em;
+  padding: 2.2rem 0 2.4rem;
 }
 
 .display {
   margin: 0;
-  font-size: clamp(3.4rem, 9vw, 7.4rem);
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
   font-weight: 700;
   line-height: 0.92;
   letter-spacing: -0.045em;
+  cursor: default;
 }
 
 .display em {
@@ -241,17 +260,29 @@ a:hover {
   font-weight: 500;
 }
 
-.hero-meta {
-  margin: 1.35rem 0 0;
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-tags li {
+  padding: 0.28rem 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
 }
 
 .cta-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 2rem;
+  margin-top: 1.4rem;
 }
 
 .btn {
@@ -293,15 +324,26 @@ a:hover {
 .hero-media {
   position: relative;
   justify-self: end;
-  width: min(100%, 420px);
+  width: min(100%, 300px);
+  cursor: pointer;
 }
 
 .hero-media img {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 28px;
-  box-shadow: 0 30px 80px rgba(255, 80, 20, 0.18);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(255, 80, 20, 0.18);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.hero-media:hover img {
+  transform: scale(1.03);
+}
+
+.hero-media.is-erupt img {
+  transform: scale(1.06);
+  box-shadow: 0 8px 80px rgba(255, 90, 30, 0.55);
 }
 
 .hero-media figcaption {
@@ -415,6 +457,8 @@ a:hover {
 
 .shots figure {
   margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
 .shots img {
@@ -422,6 +466,11 @@ a:hover {
   height: 240px;
   object-fit: cover;
   border-radius: 16px;
+  transition: transform 0.5s var(--ease);
+}
+
+.shots figure:hover img {
+  transform: scale(1.035);
 }
 
 .shots figcaption {
@@ -481,9 +530,17 @@ a:hover {
   font-size: 0.98rem;
 }
 
+.work {
+  transition: transform 0.25s var(--ease);
+}
+
 .work:hover h3,
 .work:hover .kind {
   color: var(--accent);
+}
+
+.work:hover {
+  transform: translateX(6px);
 }
 
 .sites {
@@ -618,6 +675,30 @@ a:hover {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.egg-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.6rem;
+  z-index: 50;
+  transform: translateX(-50%) translateY(12px);
+  padding: 0.7rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(18, 14, 12, 0.92);
+  color: var(--ink);
+  font-size: 0.92rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+.egg-toast.is-on {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .reveal {
@@ -650,9 +731,8 @@ a:hover {
   }
 
   .hero {
-    min-height: auto;
-    padding-top: 2.4rem;
-    gap: 2rem;
+    padding-top: 1.6rem;
+    gap: 1.6rem;
   }
 
   .hero-media {
@@ -728,10 +808,13 @@ a:hover {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .bg-shader { display: none; }
   .reveal,
   .btn,
   .site,
-  .work {
+  .work,
+  .shots img,
+  .hero-media img {
     animation: none !important;
     transition: none !important;
     opacity: 1;

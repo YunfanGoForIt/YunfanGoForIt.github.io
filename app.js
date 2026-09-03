@@ -6,9 +6,14 @@ const copy = {
     navWork: "作品",
     navContact: "联系",
     menu: "打开菜单",
-    kicker: "东南大学 · 生物医学工程",
     lede: "来世间，玩一把。",
-    meta: "IF.Link 发起人 · IF.Land 联合负责人 · TEDxSEU 24-25 社长",
+    tagSchool: "东南大学 · 生物医学工程",
+    tagIflink: "IF.Link 发起人",
+    tagIfland: "IF.Land 联合负责人",
+    tagTedx: "TEDxSEU 24-25 社长",
+    eggVolcano: "余烬还在烧。",
+    eggName: "来世间，玩一把。",
+    eggKonami: "登岛成功。",
     ctaWork: "看作品",
     ctaMail: "来聊",
     photoCap: "YunfanGoForIt",
@@ -86,9 +91,14 @@ const copy = {
     navWork: "Work",
     navContact: "Contact",
     menu: "Open menu",
-    kicker: "Southeast University · Biomedical Engineering",
     lede: "Here for one good round.",
-    meta: "Founder of IF.Link · Co-lead of IF.Land · TEDxSEU president, 2024-25",
+    tagSchool: "Southeast University · BME",
+    tagIflink: "Founder, IF.Link",
+    tagIfland: "Co-lead, IF.Land",
+    tagTedx: "TEDxSEU president, 24-25",
+    eggVolcano: "The embers are still going.",
+    eggName: "Here for one good round.",
+    eggKonami: "You landed.",
     ctaWork: "See work",
     ctaMail: "Coffee chat",
     photoCap: "Here for one good round.",
@@ -211,3 +221,115 @@ document.querySelectorAll('.nav-links a[href^="#"]').forEach((link) => {
 });
 
 document.getElementById("year").textContent = String(new Date().getFullYear());
+
+function currentCopy() {
+  const lang = document.documentElement.lang === "en" ? "en" : "zh";
+  return copy[lang] || copy.zh;
+}
+
+function toast(text) {
+  const el = document.getElementById("egg-toast");
+  if (!el) return;
+  el.hidden = false;
+  el.textContent = text;
+  requestAnimationFrame(() => el.classList.add("is-on"));
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => {
+    el.classList.remove("is-on");
+  }, 2200);
+}
+
+function burstAt(el, power) {
+  if (typeof window.emberBurst !== "function") return;
+  const r = el.getBoundingClientRect();
+  window.emberBurst(r.left + r.width / 2, r.top + r.height / 2, power);
+}
+
+const photo = document.getElementById("hero-photo");
+if (photo) {
+  photo.addEventListener("click", () => {
+    photo.classList.add("is-erupt");
+    burstAt(photo, 1);
+    toast(currentCopy().eggVolcano);
+    setTimeout(() => photo.classList.remove("is-erupt"), 700);
+  });
+}
+
+const nameEl = document.getElementById("hero-name");
+let nameClicks = 0;
+if (nameEl) {
+  nameEl.addEventListener("click", () => {
+    nameClicks += 1;
+    burstAt(nameEl, 0.45);
+    if (nameClicks >= 5) {
+      nameClicks = 0;
+      toast(currentCopy().eggName);
+      burstAt(nameEl, 1);
+    }
+  });
+}
+
+const ledeEl = document.getElementById("hero-lede");
+if (ledeEl) {
+  ledeEl.style.cursor = "pointer";
+  ledeEl.title = "";
+  ledeEl.addEventListener("click", () => {
+    const orig = ledeEl.textContent;
+    const pool = orig.replace(/\s/g, "") + "IFLAND火山余烬";
+    let n = 0;
+    const id = setInterval(() => {
+      ledeEl.textContent = [...orig]
+        .map((ch) => (ch === " " || n > 10 ? ch : pool[(n + ch.charCodeAt(0)) % pool.length]))
+        .join("");
+      n += 1;
+      if (n > 14) {
+        clearInterval(id);
+        ledeEl.textContent = orig;
+      }
+    }, 38);
+    burstAt(ledeEl, 0.6);
+  });
+}
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!reduceMotion) {
+  const nums = document.querySelectorAll("[data-count]");
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        const el = entry.target;
+        const end = Number(el.getAttribute("data-count"));
+        const suffix = el.getAttribute("data-suffix") || "";
+        const start = performance.now();
+        const dur = 1100;
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = Math.round(end * eased) + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    },
+    { threshold: 0.5 }
+  );
+  nums.forEach((n) => io.observe(n));
+}
+
+const konami = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+const seq = [];
+window.addEventListener("keydown", (e) => {
+  seq.push(e.key);
+  if (seq.length > konami.length) seq.shift();
+  if (konami.every((k, i) => seq[i] === k)) {
+    seq.length = 0;
+    const x = window.innerWidth / 2;
+    const y = window.innerHeight / 2;
+    if (typeof window.emberBurst === "function") window.emberBurst(x, y, 1);
+    setTimeout(() => window.emberBurst && window.emberBurst(x * 0.4, y * 0.6, 0.8), 120);
+    setTimeout(() => window.emberBurst && window.emberBurst(x * 1.4, y * 0.7, 0.8), 220);
+    toast(currentCopy().eggKonami);
+  }
+});
