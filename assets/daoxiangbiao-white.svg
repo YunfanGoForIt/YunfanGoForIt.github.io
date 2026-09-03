@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 128 128" role="img" aria-label="Dao Xiang Biao logo">
+  <g stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="76" r="35" fill="none" stroke-width="4.5" />
+    <circle cx="64" cy="76" r="26" fill="none" stroke-width="3.5" />
+
+    <path d="M64 50L58 72H70L64 50Z" fill="#ffffff" stroke="none" />
+    <path d="M64 102L58 80H70L64 102Z" fill="#ffffff" stroke="none" />
+    <path d="M38 76L60 70V82L38 76Z" fill="#ffffff" stroke="none" />
+    <path d="M90 76L68 70V82L90 76Z" fill="#ffffff" stroke="none" />
+
+    <path d="M28 99L60 74L100 48L68 78Z" fill="#ff6a3d" stroke-width="2.8" />
+    <circle cx="64" cy="76" r="6.2" fill="#ff6a3d" stroke-width="2.8" />
+
+    <path d="M42 13L64 5L86 13L64 22Z" fill="#ff6a3d" stroke-width="2.8" />
+    <path d="M49 21V29C49 33.4 52.6 37 57 37H71C75.4 37 79 33.4 79 29V21" fill="#ff6a3d" stroke-width="2.8" />
+    <path
+      d="M54 37C49.6 37 46 40.6 46 45V52C46 54.2 47.8 56 50 56C52.2 56 54 54.2 54 52V45H74V52C74 54.2 75.8 56 78 56C80.2 56 82 54.2 82 52V45C82 40.6 78.4 37 74 37H54Z"
+      fill="#ff6a3d"
+      stroke-width="2.8"
+    />
+    <path d="M81 16V27" fill="none" stroke-width="2.8" />
+    <circle cx="81" cy="30.5" r="2.4" fill="#ffffff" stroke="none" />
+
+    <path d="M57 50V42L64 50V42L71 50V42" fill="none" stroke-width="2.8" />
+  </g>
+</svg>
