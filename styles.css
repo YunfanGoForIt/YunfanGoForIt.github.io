@@ -549,6 +549,9 @@ a:hover {
 }
 
 .contact-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
   text-decoration: none;
   padding: 0.85rem 0;
   border-top: 1px solid var(--line);
@@ -556,6 +559,35 @@ a:hover {
 
 .contact-links a:last-child {
   border-bottom: 1px solid var(--line);
+}
+
+.contact-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.icon-github,
+.icon-bilibili,
+.icon-xhs {
+  background-color: currentColor;
+  -webkit-mask: center / contain no-repeat;
+  mask: center / contain no-repeat;
+}
+
+.icon-github {
+  -webkit-mask-image: url("./assets/icons/github.svg");
+  mask-image: url("./assets/icons/github.svg");
+}
+
+.icon-bilibili {
+  -webkit-mask-image: url("./assets/icons/bilibili.svg");
+  mask-image: url("./assets/icons/bilibili.svg");
+}
+
+.icon-xhs {
+  -webkit-mask-image: url("./assets/icons/xiaohongshu.svg");
+  mask-image: url("./assets/icons/xiaohongshu.svg");
 }
 
 .contact-links small {
