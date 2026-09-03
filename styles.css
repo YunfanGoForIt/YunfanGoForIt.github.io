@@ -596,6 +596,9 @@ a:hover {
 }
 
 .icon-xhs {
+  width: 40px;
+  height: 18px;
+  flex-basis: 40px;
   -webkit-mask-image: url("./assets/icons/xiaohongshu.svg");
   mask-image: url("./assets/icons/xiaohongshu.svg");
 }
