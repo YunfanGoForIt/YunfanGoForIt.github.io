@@ -482,9 +482,10 @@ a:hover {
   object-position: left center;
 }
 
-.site-mark {
-  width: 52px;
-  height: 52px;
+.site-word {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
 }
 
 .site b {
