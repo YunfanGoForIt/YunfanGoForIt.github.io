@@ -236,8 +236,8 @@ a:hover {
 .lede {
   max-width: 22em;
   margin: 1.4rem 0 0;
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  line-height: 1.45;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  line-height: 1.4;
   font-weight: 500;
 }
 
@@ -406,6 +406,42 @@ a:hover {
   color: #ddd4cb;
 }
 
+.shots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 2.2rem;
+}
+
+.shots figure {
+  margin: 0;
+}
+
+.shots img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.shots figcaption {
+  margin-top: 0.45rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.shots-wide img {
+  height: 280px;
+}
+
+.shots-street {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.shots-street img {
+  height: 260px;
+}
+
 .work-list {
   display: grid;
   gap: 0;
@@ -564,6 +600,10 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  .shots-street {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .hero {
     min-height: auto;
     padding-top: 2.4rem;
@@ -628,6 +668,16 @@ a:hover {
 
   .section {
     padding: 3.4rem 0;
+  }
+
+  .shots:not(.shots-street) {
+    grid-template-columns: 1fr;
+  }
+
+  .shots img,
+  .shots-wide img,
+  .shots-street img {
+    height: 220px;
   }
 }
 
