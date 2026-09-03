@@ -561,10 +561,20 @@ a:hover {
   border-bottom: 1px solid var(--line);
 }
 
-.contact-icon {
+.contact-links svg.contact-icon {
+  display: block;
   width: 20px;
   height: 20px;
-  flex-shrink: 0;
+  max-width: 20px;
+  max-height: 20px;
+  flex: 0 0 20px;
+}
+
+.contact-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
 }
 
 .icon-github,
